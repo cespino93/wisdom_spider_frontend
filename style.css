@@ -1,0 +1,52 @@
+h1 {
+    color: rgb(0, 0, 0);
+    font-family: 'Helvetica';
+}
+
+h3 {
+    color:rgb(255, 255, 255)
+}
+
+strong {
+    color:rgb(255, 255, 255)
+}
+
+body {
+    background-color: rgb(83, 83, 83);
+    color: rgb(107, 107, 107);
+    font-family: 'Helvetica';
+    line-height: 18px;
+  }
+
+.form-container {
+    color: rgb(255, 255, 255)
+}
+
+#log-website-form {
+    text-align: center;
+    border:6px solid   
+}
+
+#website-container {
+    color: #ffffff
+}
+
+.submit {
+    border:2px solid rgb(59, 50, 80);
+    border-radius:1px;
+    padding:2px;
+    font-family: 'Helvetica';
+    background:linear-gradient(to top,rgb(252, 197, 232),
+    rgb(0, 0, 0));
+    color:rgb(255, 255, 255)
+}
+
+.delete-btn {
+    border:3px solid rgb(0, 0, 0);
+    border-radius:1px;
+    padding:2px;
+    font-family: 'Helvetica';
+    background:linear-gradient(to top,rgb(245, 235, 241),
+    rgb(160, 163, 165));
+    color:rgb(13, 12, 14)
+}
