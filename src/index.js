@@ -1,10 +1,12 @@
 const endPoint = "http://localhost:3000/api/v1/websites"
+const endPointCategory = "http://localhost:3000/api/v1/categories"
 
 document.addEventListener('DOMContentLoaded', () => {
-  getWebsites()
-
+  renderForm()
   const createWebsiteForm = document.querySelector("#website-form")
   createWebsiteForm.addEventListener("submit", (e) => createFormHandler(e))
+  getWebsites()
+  getCategories()
 })
 
 document.addEventListener("click", function(e) {
@@ -23,7 +25,22 @@ function getWebsites() {
   .then(websites => {
     websites.data.forEach(website => {
       let newWebsite = new Website(website, website.attributes)
-      document.querySelector('#website-container').innerHTML += newWebsite.renderWebsite()
+      const container = document.querySelector('#website-container')
+      const br = document.createElement('br')
+      container.innerHTML += newWebsite.renderWebsite()
+      container.append(newWebsite.renderButton(), br, br)
+    })
+  })
+}
+
+function getCategories() {
+  fetch(endPointCategory)
+  .then(response => response.json())
+  .then(json => {
+    json.data.forEach(category => {
+      console.log(category)
+      let newCategory = new Category(category)
+      newCategory.attachCategory()
     })
   })
 }
@@ -37,17 +54,45 @@ function createFormHandler(e) {
   postWebsites (titleInput, descriptionInput, imageInput, categoryId)
 }
 
+function renderForm() {
+    const container = document.querySelector(".form-container")
+    container.innerHTML = ` <form id="website-form">
+      <h3>List Your Website, lets grow the community!</h3>
+
+      <input id='input-title' type="text" name="title" placeholder="Website Title" class="input-text">
+      <br><br>
+      <textarea id='input-description' name="description" rows="8" cols="40" placeholder="Website Description"></textarea>
+      <br><br>
+      <input id='input-url' type="text" name="image" placeholder="Upload an image URL" class="input-text">
+      <br><br>
+
+    Category:
+    <select id="categories" name="categories">
+    </select>
+    <br><br>
+
+    <input id='create-button' type="submit" name="submit" value="List Website" class="submit">
+    </form>
+  `
+}
+
+
 function postWebsites(title, description, image_url, category_id) {
-  let bodyObj = {title, description, image_url, category_id}
+  let bodyObj = {
+    website: {
+    title,
+    description,
+    image_url,
+    category_id
+}};
   fetch(endPoint, {
     method: "POST",
-    headers: {"Content-Tpe": "application/json"},
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify(bodyObj)
   })
   .then(response => response.json())
   .then(website => {
-    const websiteData = website.data
-    let newWebsite = new Website(websiteData, websiteData.attributes)
+    let newWebsite = new Website(website.data)
     document.querySelector('#website-container').innerHTML += newWebsite.renderWebsite()
   })
 }
