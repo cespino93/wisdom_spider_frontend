@@ -3,7 +3,7 @@ const endPoint = "http://localhost:3000/api/v1/websites"
 document.addEventListener('DOMContentLoaded', () => {
   getWebsites()
 
-  const createWebsiteForm = document.querySelector ("#create-website-form")
+  const createWebsiteForm = document.querySelector("#website-form")
   createWebsiteForm.addEventListener("submit", (e) => createFormHandler(e))
 })
 
