@@ -1,6 +1,7 @@
 class Website {
+  // declaring a class named website
   static all = [];
-
+  //  below this is creating our website object
   constructor(website) {
     this.id = website.id
     this.title = website.attributes.title
@@ -18,6 +19,7 @@ class Website {
     <img src=${this.image_url} height="300" width="350">
     <p><strong>Description:</strong> ${this.description}</p>
     <p id="category-name"><strong>Category:</strong> ${this.category.name}</p>
+    <button data-id=${this.id} id="delete-btn" type="button" class="delete-btn">Delete</button>
     </div>
     <br><br>`;
   }

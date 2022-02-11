@@ -2,10 +2,10 @@ class Category {
     static all = [];
 
     constructor(category) {
-      this.id = category.id
-      this.name = category.attributes.name
-      Category.all.push(this)
-      console.log(this);
+        this.id = category.id
+        this.name = category.attributes.name
+        Category.all.push(this)
+        console.log(this);
     }
 
     renderCategory() {

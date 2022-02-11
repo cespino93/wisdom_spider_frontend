@@ -4,18 +4,21 @@ const endPointCategory = "http://localhost:3000/api/v1/categories"
 document.addEventListener('DOMContentLoaded', () => {
   renderForm()
   const createWebsiteForm = document.querySelector("#website-form")
+  // const varibale named createWebsiteForm that containts an object that contains a property
   createWebsiteForm.addEventListener("submit", (e) => createFormHandler(e))
+  // adding an Event Listener from the 1st code to the obeject (CreateaWebsiteForm) that contains an action ("submit)
   getWebsites()
   getCategories()
+  // We called both functions getWebsites and getCategories so that it renders in order to show into the DOM
 })
 
-document.addEventListener("click", function(e) {
+document.addEventListener("click", function (e) {
   const websiteCard = document.getElementById(`${e.target.dataset.id}`)
 
   if(e.target.matches("#delete-btn")) {
     e.preventDefault()
     deleteWebsite(e.target.dataset.id)
-    websiteCard.remove(websiteCard)
+    e.target.parentElement.remove()
   }
 })
 
@@ -28,7 +31,6 @@ function getWebsites() {
       const container = document.querySelector('#website-container')
       const br = document.createElement('br')
       container.innerHTML += newWebsite.renderWebsite()
-      container.append(newWebsite.renderButton(), br, br)
     })
   })
 }
@@ -76,7 +78,6 @@ function renderForm() {
   `
 }
 
-
 function postWebsites(title, description, image_url, category_id) {
   let bodyObj = {
     website: {
@@ -101,5 +102,4 @@ function deleteWebsite(id) {
   fetch(`${endPoint}/${id}`, {
     method: "DELETE"
   })
-  .then(response => response.json())
 }
